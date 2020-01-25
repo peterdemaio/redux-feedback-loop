@@ -8,7 +8,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 
-const feelings = (state = 0, action) => {
+const feeling = (state = 0, action) => {
     console.log(action.payload)
     if (action === 'SET_FEELING') {
         return action.payload
@@ -18,7 +18,7 @@ const feelings = (state = 0, action) => {
 
 const storeInstance =  createStore(
     combineReducers({
-       feelings
+       feeling
     }), 
     applyMiddleware(logger)
 )
