@@ -9,7 +9,7 @@ class review extends Component {
         boolean: true,
         flagged: false
     }
-
+    // This is the axios route to send it to the server.
     submit = () => {
         console.log('trying to post artist with', this.props.reduxState)
         Axios.post('/feedback', this.props.reduxState)
@@ -20,6 +20,7 @@ class review extends Component {
 
             })
     }
+    // This function resets all the reducers and sends the user to the homescreen.
     newFeedback = () => {
         this.props.dispatch({
             type: 'RESET_FEELING'
@@ -39,7 +40,7 @@ class review extends Component {
         this.props.history.push('/')
     }
 
-
+    // This function changes the flagged reducer upon checking and unchecking.
     handleCheckboxChange = (event) => {
             this.props.dispatch({
                 type: 'FLAGGED',
@@ -48,19 +49,16 @@ class review extends Component {
 
     render() {
         let displayText
-
+        // This page lets the user review their answers before submission, 
+        // then gives confirmation and a button to return to the homescreen.
         if (this.state.boolean === true) {
             displayText = (
                 <div>
                     <h1>Here are your reponses: </h1>
                     <h3>Feeling: {this.props.reduxState.feeling}</h3>
-                    {/* <h5>Comments: {this.props.reduxState.feeling.Comments}</h5> */}
                     <h3>Understanding: {this.props.reduxState.understanding}</h3>
-                    {/* <h5>Comments: {this.props.reduxState.understanding.Comments}</h5> */}
                     <h3>Support: {this.props.reduxState.support}</h3>
-                    {/* <h5>Comments: {this.props.reduxState.understanding.Comments}</h5> */}
                     <h3>Comments: {this.props.reduxState.comments}</h3>
-                    {/* <h3>Additional Comments: {this.props.reduxState.comments.Else}</h3> */}
                     <input type="checkbox" onChange={this.handleCheckboxChange} /> <div>I'd like someone from Prime support staff to talk with me.</div>
                     <br></br>
                     <button onClick={this.submit}>SUBMIT</button>

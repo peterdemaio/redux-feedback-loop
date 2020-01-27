@@ -6,10 +6,8 @@ class Support extends Component {
 
     state = {
         Support: 0,
-        // Comments: ''
     }
-    // This method puts the Support rating into state. 
-    // I do think because I need it to display the proper text later on.
+    
     setSupport = (event) => {
         console.log('You are Support', Number(event.target.value))
         this.setState({
@@ -18,14 +16,6 @@ class Support extends Component {
         });
     }
 
-    // setComments = (event) => {
-    //     this.setState({
-    //         ...this.state,
-    //         Comments: (event.target.value)
-    //     })
-    //     console.log(this.state.Comments)
-    // }
-    // This method sends the Support level to the Redux Store.
     addSupport = ()=> {
         if (this.state.Support === 0) {
             alert('Please answer the question before moving on!')

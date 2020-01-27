@@ -15,6 +15,7 @@ class Comments extends Component {
         });
     }
     // This method sends the Comments to the Redux Store.
+    // Comments are optional so there is no alert here.
     addComments = () => {
         this.props.dispatch({
             type: 'SET_COMMENTS',
@@ -42,6 +43,5 @@ const putReduxStateOnProps = (reduxState) => {
         reduxState
     }
 }
-
 
 export default connect(putReduxStateOnProps)(Comments);

@@ -16,7 +16,8 @@ class Feeling extends Component {
         });
     }
 
-    // This method sends the feeling level to the Redux Store.
+    // This method sends the feeling level to the Redux Store. 
+    // If the feeling hasn't been change, an alert pops up and does not allow the user to proceed.
     addFeeling = () => {
         console.log(this.state)
         if (this.state.Feeling === 0) {

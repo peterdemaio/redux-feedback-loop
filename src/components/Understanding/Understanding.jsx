@@ -6,10 +6,8 @@ class Understanding extends Component {
 
     state = {
         Understanding: 0,
-        // Comments: ''
     }
     // This method puts the Understanding rating into state. 
-    // I do think because I need it to display the proper text later on.
     setUnderstanding = (event) => {
         console.log('You are Understanding', Number(event.target.value))
         this.setState({
@@ -17,7 +15,7 @@ class Understanding extends Component {
             Understanding: Number(event.target.value)
         });
     }
-    // This method sends the Understanding level to the Redux Store.
+    // This method sends the Understanding level to the Redux Store, unless the rating is still zero.
     addUnderstanding = () => {
         if (this.state.Understanding === 0) {
             alert('Please answer the question before moving on!')
@@ -29,14 +27,6 @@ class Understanding extends Component {
             this.props.history.push('/support')
         }
     }
-
-    // setComments = (event) => {
-    //     this.setState({
-    //         ...this.state,
-    //         Comments: event.target.value
-    //     })
-    //     console.log(this.state.Comments)
-    // }
 
     render() {
         let displayText = ''
@@ -84,6 +74,5 @@ const putReduxStateOnProps = (reduxState) => {
         reduxState
     }
 }
-
 
 export default connect(putReduxStateOnProps)(Understanding);

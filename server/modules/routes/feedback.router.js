@@ -10,7 +10,7 @@ const pool = new Pool({
     max: 10,
     idleTimeoutMillis: 10000
 })
-
+// This is the post route with the SQL query text to add responses to the database.
 router.post('/', (req, res) => {
     let feedbackToAdd = req.body
     console.log(feedbackToAdd)

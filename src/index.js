@@ -7,6 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
 
+// Five reducers, one for each piece of data needed.
 const feeling = (state = 0, action) => {
     if (action.type === 'SET_FEELING') {
         return action.payload
