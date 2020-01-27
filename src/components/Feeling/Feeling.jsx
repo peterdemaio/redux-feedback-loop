@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
-import { Hashrouter as Router, Route, Link } from 'react-router';
-import './Feeling.css'
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 
 class Feeling extends Component {
 
     state = {
-        Feeling: 0
+        Feeling: 0,
     }
     // This method puts the Feeling rating into state. 
-    // I do think because I need it to display the proper text later on.
     setFeeling = (event) => {
-        console.log('You are feeling', Number(event.target.value))
+        console.log('You are feeling', (event.target.value))
         this.setState({
+            ...this.state,
             Feeling: Number(event.target.value)
         });
-        // console.log(this.state)
-        // this.props.dispatch({
-        //     type: 'SET_FEELING',
-        //     payload: Number(event.target.value)
-        // })
     }
+
     // This method sends the feeling level to the Redux Store.
-    addFeeling = ()=> {
+    addFeeling = () => {
+        console.log(this.state)
+        if (this.state.Feeling === 0) {
+            alert('Please answer the question before moving on!')
+        } else {
         this.props.dispatch({
             type: 'SET_FEELING',
             payload: this.state.Feeling
         });
         this.props.history.push('/understanding')
+    }
     }
 
     render() {
@@ -36,25 +35,22 @@ class Feeling extends Component {
         // This switch statement changes the text on the screen based on which number the user clicks.
         switch (this.state.Feeling) {
             case 1:
-            displayText =  (<p>Cheeseburger rubber cheese fromage frais. Jarlsberg emmental babybel boursin edam stinking bishop swiss cheese slices. Cheddar red leicester boursin fromage frais gouda red leicester fromage frais cheesecake. Fromage stinking bishop bavarian bergkase.</p>);
-            break;
+                displayText = `We take your wellbeing seriously and want to help. Later on in the comments section be sure to share a bit about what's affecting you. We encourage you to connect with Prime staff by checking the box at the review page of this feedback.`
+                break;
             case 2:
-            displayText =  (<p>Rubber cheese manchego hard cheese. Stilton rubber cheese cheesy feet cow camembert de normandie danish fontina cheese slices port-salut. Melted cheese pepper jack camembert de normandie croque monsieur emmental cut the cheese chalk and cheese cheese triangles. Ricotta cheese triangles bocconcini cottage cheese.</p>);
-            break;
+                displayText = `Would you like to share any thoughts about why your day didn't feel good? We're happy to listen and take suggestions about way to help. Please leave yout comments in the comments section later in this feeback.`
+                break;
             case 3:
-            displayText =  (<p>Cottage cheese chalk and cheese mascarpone. Cow edam fondue boursin cauliflower cheese boursin squirty cheese the big cheese. Macaroni cheese cream cheese mozzarella fromage frais stilton mascarpone say cheese jarlsberg. Dolcelatte taleggio jarlsberg fromage frais.</p>);
-            break;
+                displayText = `Is there anything that you'd like us to know about how you're doing? We're happy to help in any way.`
+                break;
             case 4:
-            displayText =  (<p>Cow cheese triangles melted cheese. Cheesecake bavarian bergkase cauliflower cheese bavarian bergkase pecorino red leicester fromage swiss. Mascarpone cheesy feet fromage frais jarlsberg danish fontina manchego halloumi ricotta. Fromage everyone loves camembert de normandie st. agur blue cheese st. agur blue cheese.</p>);
-            break;
+                displayText = `If you'd like to share, we'd love to hear more about what made your day feel good!`
+                break;
             case 5:
-            displayText =  (<p>Monterey jack squirty cheese fondue. Jarlsberg st. agur blue cheese airedale cream cheese monterey jack gouda everyone loves cheese slices. Pepper jack cheesy feet who moved my cheese monterey jack cheeseburger edam cut the cheese parmesan. Fromage port-salut stilton the big cheese parmesan bocconcini cream cheese cheesecake. Pepper jack.</p>);
-            break;
+                displayText = `Awesome! If you'd like to share, we'd love to hear more about what made your day feel great!`
+                break;
             default:
-                displayText = (<p>Please choose a number</p>)
-
-
-
+                displayText = 'Please choose a number'
         }
         return (
             <div className="feeling">
@@ -67,12 +63,10 @@ class Feeling extends Component {
                     <input type="radio" value='4' name="feeling" />4 - I feel pretty good<br></br>
                     <input type="radio" value='5' name="feeling" />5 - I feel great!<br></br>
                 </div>
-                <div className="response">
-                {displayText}
-                </div>
+                <div className="response">{displayText}</div>
                 <br></br>
                 <button onClick={this.addFeeling}>NEXT PAGE</button>
-            </div>  
+            </div>
         )
     }
 }
